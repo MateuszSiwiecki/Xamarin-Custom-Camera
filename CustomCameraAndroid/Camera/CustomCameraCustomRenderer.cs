@@ -9,16 +9,16 @@ using AndroidX.Fragment.App;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using CustomCamera;
+using CustomCamera.CameraView;
 
-[assembly: ExportRenderer(typeof(CameraView), typeof(CustomCameraAndroid.Camera.CameraViewCustomRenderer))]
+[assembly: ExportRenderer(typeof(CameraRender), typeof(CustomCameraAndroid.Camera.CameraViewCustomRenderer))]
 namespace CustomCameraAndroid.Camera
 {
     public class CameraViewCustomRenderer : FrameLayout, IVisualElementRenderer, IViewRenderer
     {
         int? defaultLabelFor;
         bool disposed;
-        CameraView element;
+        CustomCamera.CameraView.CameraRender element;
         VisualElementTracker visualElementTracker;
         VisualElementRenderer visualElementRenderer;
         FragmentManager fragmentManager;
@@ -29,7 +29,7 @@ namespace CustomCameraAndroid.Camera
         public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
         public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
-        CameraView Element
+        CustomCamera.CameraView.CameraRender Element
         {
             get => element;
             set
@@ -41,7 +41,7 @@ namespace CustomCameraAndroid.Camera
 
                 var oldElement = element;
                 element = value;
-                OnElementChanged(new ElementChangedEventArgs<CameraView>(oldElement, element));
+                OnElementChanged(new ElementChangedEventArgs<CustomCamera.CameraView.CameraRender>(oldElement, element));
             }
         }
 
@@ -50,7 +50,7 @@ namespace CustomCameraAndroid.Camera
             visualElementRenderer = new VisualElementRenderer(this);
         }
 
-        void OnElementChanged(ElementChangedEventArgs<CameraView> e)
+        void OnElementChanged(ElementChangedEventArgs<CustomCamera.CameraView.CameraRender> e)
         {
             CameraFragment newFragment = null;
 
@@ -172,9 +172,9 @@ namespace CustomCameraAndroid.Camera
 
         void IVisualElementRenderer.SetElement(VisualElement element)
         {
-            if (!(element is CameraView camera))
+            if (!(element is CustomCamera.CameraView.CameraRender camera))
             {
-                throw new ArgumentException($"{nameof(element)} must be of type {nameof(CameraView)}");
+                throw new ArgumentException($"{nameof(element)} must be of type {nameof(CustomCamera.CameraView.CameraRender)}");
             }
 
             if (visualElementTracker == null)

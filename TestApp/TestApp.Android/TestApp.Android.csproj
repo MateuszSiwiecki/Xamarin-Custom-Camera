@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -87,10 +87,14 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CustomCameraAndroid\CustomCameraAndroid.csproj">
+      <Project>{a143b902-e514-4370-ab37-a173216be310}</Project>
+      <Name>CustomCameraAndroid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestApp\TestApp.csproj">
       <Project>{16F3470E-F14E-448C-9621-26FC348A47BD}</Project>
       <Name>TestApp</Name>
     </ProjectReference>
   </ItemGroup>
- <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

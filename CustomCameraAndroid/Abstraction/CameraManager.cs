@@ -16,7 +16,7 @@ using System.Text;
 
 namespace CustomCameraAndroid.Abstraction
 {
-    public abstract class CameraManager
+    internal abstract class CameraManager
     {
         public static readonly int REQUEST_CAMERA_PERMISSION = 1;
         public Context MainContext => Android.App.Application.Context;

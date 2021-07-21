@@ -14,7 +14,7 @@ using System.Text;
 
 namespace CustomCameraAndroid.Camera
 {
-    public class CameraManager : CustomCameraAndroid.Abstraction.CameraManager
+    internal class CameraManager : CustomCameraAndroid.Abstraction.CameraManager
     {
         public Android.Hardware.Camera Camera;
 
