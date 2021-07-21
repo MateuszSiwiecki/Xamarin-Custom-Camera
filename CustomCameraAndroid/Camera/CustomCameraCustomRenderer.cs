@@ -11,8 +11,8 @@ using Android.Views;
 using Android.Widget;
 using CustomCamera;
 
-[assembly: ExportRenderer(typeof(CameraView), typeof(CameraViewCustomRenderer))]
-namespace CustomCameraAndroid
+[assembly: ExportRenderer(typeof(CameraView), typeof(CustomCameraAndroid.Camera.CameraViewCustomRenderer))]
+namespace CustomCameraAndroid.Camera
 {
     public class CameraViewCustomRenderer : FrameLayout, IVisualElementRenderer, IViewRenderer
     {
@@ -57,7 +57,6 @@ namespace CustomCameraAndroid
             if (e.OldElement != null)
             {
                 e.OldElement.PropertyChanged -= OnElementPropertyChanged;
-                e.OldElement.ScanDocumentCalled -= OnScanDocumentCalled;
                 cameraFragment.Dispose();
             }
             if (e.NewElement != null)
@@ -65,11 +64,10 @@ namespace CustomCameraAndroid
                 this.EnsureId();
 
                 e.NewElement.PropertyChanged += OnElementPropertyChanged;
-                e.NewElement.ScanDocumentCalled += OnScanDocumentCalled;
 
 
                 ElevationHelper.SetElevation(this, e.NewElement);
-                newFragment = new CameraFragment { Element = element };
+                //newFragment = new CameraFragment { Element = element };
             }
 
             FragmentManager.BeginTransaction()
@@ -114,8 +112,6 @@ namespace CustomCameraAndroid
                 if (Element != null)
                 {
                     Element.PropertyChanged -= OnElementPropertyChanged;
-                    Element.ScanDocumentCalled -= OnScanDocumentCalled;
-                    Element.ScannedDocument?.Dispose();
 
                     if (Platform.GetRenderer(Element) == this)
                     {
